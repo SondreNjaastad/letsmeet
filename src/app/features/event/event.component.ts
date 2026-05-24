@@ -214,7 +214,8 @@ export class EventComponent implements OnInit, OnDestroy {
     this.event = await this.supabase.getEventByInviteCode(inviteCode);
 
     if (this.event) {
-      this.shareUrl = `${window.location.origin}/event/${this.event.invite_code}`;
+      const base = document.baseURI.replace(/\/$/, '');
+      this.shareUrl = `${base}/event/${this.event.invite_code}`;
       await this.loadData();
 
       this.channel = this.supabase.subscribeToAvailability(this.event.id, () => this.loadAvailability());
@@ -252,7 +253,8 @@ export class EventComponent implements OnInit, OnDestroy {
   }
 
   getParticipantUrl(p: Participant): string {
-    return `${window.location.origin}/event/${this.event!.invite_code}/p/${p.id}`;
+    const base = document.baseURI.replace(/\/$/, '');
+    return `${base}/event/${this.event!.invite_code}/p/${p.id}`;
   }
 
   getResponseCount(participantId: string): number {
