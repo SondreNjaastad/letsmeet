@@ -117,7 +117,7 @@ export class RespondComponent implements OnInit, OnDestroy {
 
     if (this.event && this.participant && this.participant.event_id === this.event.id) {
       await this.loadData();
-      this.channel = this.supabase.subscribeToAvailability(this.event.id, () => this.loadAllAvailability());
+      this.channel = this.supabase.subscribeToAvailability(this.event.id, () => this.loadData());
     } else {
       this.participant = null;
     }

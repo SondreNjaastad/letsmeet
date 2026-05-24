@@ -69,6 +69,7 @@ interface DayCell {
       aspect-ratio: 1;
       border-radius: 8px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       font-size: 14px;
@@ -77,6 +78,17 @@ interface DayCell {
       border: none;
       background: var(--color-neutral);
       color: var(--color-text);
+      gap: 1px;
+    }
+
+    .day-number {
+      line-height: 1;
+    }
+
+    .count {
+      font-size: 9px;
+      line-height: 1;
+      opacity: 0.7;
     }
 
     .day-cell.empty {
@@ -179,7 +191,12 @@ interface DayCell {
                 (mouseenter)="hoveredDate = cell.date"
                 (mouseleave)="hoveredDate = null"
                 (click)="selectedDate = selectedDate === cell.date ? null : cell.date">
-                {{ cell.isEmpty ? '' : cell.day }}
+                @if (!cell.isEmpty) {
+                  <span class="day-number">{{ cell.day }}</span>
+                  @if (getSummary(cell.date); as s) {
+                    <span class="count">{{ s.availableCount }}/{{ participantCount() }}</span>
+                  }
+                }
                 @if ((hoveredDate === cell.date || selectedDate === cell.date) && getSummary(cell.date)) {
                   <div class="tooltip">
                     <div>{{ getSummary(cell.date)!.availableCount }}/{{ participantCount() }} available</div>

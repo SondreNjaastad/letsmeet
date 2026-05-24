@@ -218,7 +218,7 @@ export class EventComponent implements OnInit, OnDestroy {
       this.shareUrl = `${base}/event/${this.event.invite_code}`;
       await this.loadData();
 
-      this.channel = this.supabase.subscribeToAvailability(this.event.id, () => this.loadAvailability());
+      this.channel = this.supabase.subscribeToAvailability(this.event.id, () => this.loadData());
     }
 
     this.loading = false;
