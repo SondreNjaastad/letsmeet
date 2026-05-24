@@ -188,7 +188,7 @@ export class CalendarGridComponent {
 
   get visibleMonths() {
     const months: { key: string; label: string; cells: DayCell[] }[] = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       const d = new Date(this.startMonth.getFullYear(), this.startMonth.getMonth() + i, 1);
       months.push({
         key: `${d.getFullYear()}-${d.getMonth()}`,
